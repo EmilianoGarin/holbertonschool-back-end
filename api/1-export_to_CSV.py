@@ -2,6 +2,7 @@
 """ given employee ID, returns information about his/her TODO list progress."""
 
 import requests
+import csv
 import sys
 
 
@@ -20,12 +21,12 @@ def get_employee_todo_progress(employee_id):
     total_tasks = len(todos_data)
     done_tasks = sum(1 for todo in todos_data if todo['completed'])
 
-    print(f"Employee {employee_name} is done with tasks\
-        ({done_tasks}/{total_tasks}):")
+    csv_filename = f'{employee_id}.csv'
 
-    for todo in todos_data:
-        if todo['completed']:
-            print(f"\t{todo['title']}")
+    with open(csv_filename, 'w', newline='') as f:
+        for todo in todos_data:
+            f.write(f'"{employee_id},"{employee_name}",\
+"{todo["completed"]}","{todo["title"]}"\n')
 
 
 if __name__ == '__main__':
