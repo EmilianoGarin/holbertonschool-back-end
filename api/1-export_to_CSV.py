@@ -17,7 +17,7 @@ def get_employee_todo_progress(employee_id):
     user_data = user_response.json()
     todos_data = todos_response.json()
 
-    employee_name = user_data['name']
+    employee_name = user_data['username']
     total_tasks = len(todos_data)
     done_tasks = sum(1 for todo in todos_data if todo['completed'])
 
@@ -25,7 +25,7 @@ def get_employee_todo_progress(employee_id):
 
     with open(csv_filename, 'w', newline='') as f:
         for todo in todos_data:
-            f.write(f'"{employee_id}","{employee_name}",\
+            f.write(f'"{todo["userId"]}","{employee_name}",\
 "{todo["completed"]}","{todo["title"]}"\n')
 
 
