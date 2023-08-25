@@ -25,7 +25,7 @@ def get_employee_todo_progress(employee_id):
 
     with open(csv_filename, 'w', newline='') as f:
         for todo in todos_data:
-            f.write(f'"{employee_id},"{employee_name}",\
+            f.write(f'"{employee_id}","{employee_name}",\
 "{todo["completed"]}","{todo["title"]}"\n')
 
 
